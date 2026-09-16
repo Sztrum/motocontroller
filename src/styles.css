@@ -39,6 +39,10 @@ button {
     @apply bg-amber-400;
   }
 
+  .status-indicator--offline {
+    @apply bg-slate-500;
+  }
+
   .status-indicator--disconnected {
     @apply bg-red-400;
   }
@@ -49,6 +53,22 @@ button {
 
   .camera-viewport > p {
     @apply grid flex-1 place-items-center;
+  }
+
+  .drive-mode {
+    @apply mt-6 flex items-center justify-between gap-4 border-y border-slate-700/80 py-4;
+  }
+
+  .mode-state {
+    @apply px-3 py-2;
+  }
+
+  .mode-state--active {
+    @apply bg-slate-300 text-slate-950;
+  }
+
+  .mode-state--pending {
+    @apply border-l border-slate-700 text-slate-500;
   }
 
   .control-button {

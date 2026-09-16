@@ -69,7 +69,7 @@ export function RobotControls({
     <section aria-labelledby="controls-heading" className="p-6 sm:p-8">
       <div className="flex items-start justify-between gap-6">
         <div>
-          <p className="panel-label">Manual drive</p>
+          <p className="panel-label">Drive system</p>
           <h2
             id="controls-heading"
             className="mt-2 text-lg font-medium text-slate-100"
@@ -78,6 +78,19 @@ export function RobotControls({
           </h2>
         </div>
         <p className="font-mono text-xs text-slate-500">WASD / ARROWS</p>
+      </div>
+
+      <div className="drive-mode">
+        <div>
+          <p className="panel-label">Drive mode</p>
+          <p className="mt-1 font-mono text-xs text-slate-500">
+            Autonomous navigation is not configured.
+          </p>
+        </div>
+        <div className="flex shrink-0 border border-slate-700 font-mono text-xs tracking-wide">
+          <span className="mode-state mode-state--active">MANUAL</span>
+          <span className="mode-state mode-state--pending">ROAM</span>
+        </div>
       </div>
 
       {error ? (

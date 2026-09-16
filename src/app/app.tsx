@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { ConnectionPanel } from '../features/connection/components/connection-panel';
 import { useConnection } from '../features/connection/hooks/use-connection';
+import type { ConnectionStatus } from '../features/connection/model/connection-status';
 import { RobotControls } from '../features/robot-control/components/robot-controls';
 import type { RobotCommand } from '../features/robot-control/model/robot-command';
 import { createRobotController } from '../features/robot-control/model/robot-controller';
@@ -10,6 +11,32 @@ interface CommandLogEntry {
   command: RobotCommand;
   time: string;
 }
+
+const headerConnectionStates: Record<
+  ConnectionStatus,
+  { indicatorClass: string; label: string; textClass: string }
+> = {
+  connected: {
+    indicatorClass: 'status-indicator--connected',
+    label: 'CONNECTED',
+    textClass: 'text-emerald-300',
+  },
+  connecting: {
+    indicatorClass: 'status-indicator--pending',
+    label: 'CONNECTING',
+    textClass: 'text-amber-300',
+  },
+  disconnected: {
+    indicatorClass: 'status-indicator--offline',
+    label: 'OFFLINE',
+    textClass: 'text-slate-400',
+  },
+  error: {
+    indicatorClass: 'status-indicator--disconnected',
+    label: 'ERROR',
+    textClass: 'text-red-300',
+  },
+};
 
 export function App() {
   const [serialClient] = useState(() => new WebSerialClient());
@@ -33,26 +60,24 @@ export function App() {
 
   const lastCommand = commandLog[0]?.command ?? '—';
   const isConnected = connection.status === 'connected';
+  const headerConnectionState = headerConnectionStates[connection.status];
 
   return (
     <main className="min-h-screen px-4 py-4 sm:px-8 sm:py-8">
       <div className="device-panel mx-auto max-w-6xl">
         <header className="flex items-center justify-between gap-6 border-b border-slate-700/80 px-6 py-5 sm:px-8">
           <div>
-            <p className="panel-label">Vehicle interface / v0.1</p>
-            <h1 className="mt-2 text-xl font-medium tracking-[0.08em] text-slate-100">
+            <h1 className="text-xl font-medium tracking-[0.08em] text-slate-100">
               ROVER CONTROL
             </h1>
           </div>
           <div className="flex items-center gap-2 font-mono text-xs tracking-wide">
             <span
               aria-hidden="true"
-              className={`status-indicator ${isConnected ? 'status-indicator--connected' : 'status-indicator--disconnected'}`}
+              className={`status-indicator ${headerConnectionState.indicatorClass}`}
             />
-            <span
-              className={isConnected ? 'text-emerald-300' : 'text-slate-400'}
-            >
-              {isConnected ? 'CONNECTED' : 'OFFLINE'}
+            <span className={headerConnectionState.textClass}>
+              {headerConnectionState.label}
             </span>
           </div>
         </header>
