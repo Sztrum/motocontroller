@@ -43,6 +43,14 @@ button {
     @apply bg-red-400;
   }
 
+  .camera-viewport {
+    @apply flex aspect-video flex-col bg-[#111315] p-5 sm:p-6;
+  }
+
+  .camera-viewport > p {
+    @apply grid flex-1 place-items-center;
+  }
+
   .control-button {
     @apply grid h-20 w-20 place-items-center border border-slate-500 bg-[#22272b] text-3xl text-slate-100 transition duration-150 hover:border-slate-300 hover:bg-[#2a3035] active:border-slate-100 active:bg-slate-300 active:text-slate-950 disabled:cursor-not-allowed disabled:border-slate-800 disabled:bg-[#1a1d20] disabled:text-slate-700;
   }

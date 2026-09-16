@@ -58,11 +58,30 @@ export function App() {
         </header>
 
         <div className="grid lg:grid-cols-[minmax(0,1fr)_20rem]">
-          <RobotControls
-            controller={robotController}
-            enabled={isConnected}
-            onCommand={recordCommand}
-          />
+          <div>
+            <section
+              className="camera-viewport border-b border-slate-700/80"
+              aria-labelledby="camera-heading"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <h2 id="camera-heading" className="panel-label">
+                  Camera feed
+                </h2>
+                <span className="font-mono text-[11px] text-slate-600">
+                  NO SIGNAL
+                </span>
+              </div>
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-slate-600">
+                Video source not configured
+              </p>
+            </section>
+
+            <RobotControls
+              controller={robotController}
+              enabled={isConnected}
+              onCommand={recordCommand}
+            />
+          </div>
 
           <aside className="border-t border-slate-700/80 lg:border-l lg:border-t-0">
             <ConnectionPanel {...connection} />
