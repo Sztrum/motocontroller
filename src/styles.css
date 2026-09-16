@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #e2e8f0;
+  background: #121416;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #121416;
+}
+
+button {
+  font: inherit;
+}
+
+@layer components {
+  .device-panel {
+    @apply border border-slate-800 bg-[#191c1f] shadow-2xl shadow-black/20;
+  }
+
+  .panel-label {
+    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-slate-500;
+  }
+
+  .status-indicator {
+    @apply h-2 w-2 rounded-full;
+  }
+
+  .status-indicator--connected {
+    @apply bg-emerald-400;
+  }
+
+  .status-indicator--pending {
+    @apply bg-amber-400;
+  }
+
+  .status-indicator--disconnected {
+    @apply bg-red-400;
+  }
+
+  .control-button {
+    @apply grid h-20 w-20 place-items-center border border-slate-500 bg-[#22272b] text-3xl text-slate-100 transition duration-150 hover:border-slate-300 hover:bg-[#2a3035] active:border-slate-100 active:bg-slate-300 active:text-slate-950 disabled:cursor-not-allowed disabled:border-slate-800 disabled:bg-[#1a1d20] disabled:text-slate-700;
+  }
+
+  .control-button--active {
+    @apply border-slate-300 bg-slate-300 text-slate-950;
+  }
+
+  .control-button--stop {
+    @apply border-red-500 bg-[#321d20] text-red-100 hover:border-red-300 hover:bg-[#472326] active:bg-red-400 active:text-slate-950;
+  }
+
+  .emergency-stop {
+    @apply mx-auto mt-8 block min-h-12 w-full max-w-[17rem] border border-red-600 bg-red-700 px-5 py-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-white transition duration-150 hover:bg-red-600 active:bg-red-400 active:text-slate-950 disabled:cursor-not-allowed disabled:border-slate-800 disabled:bg-[#1a1d20] disabled:text-slate-700;
+  }
+
+  .connection-button {
+    @apply mt-6 min-h-11 w-full border border-slate-600 bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-wide text-slate-200 transition duration-150 hover:border-slate-300 hover:bg-slate-800 active:bg-slate-300 active:text-slate-950 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}
